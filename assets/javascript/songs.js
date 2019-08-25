@@ -10,10 +10,18 @@ class Spotify {
     }
   //methods
 
+  // remove this when done testing
   hello() {
     console.log('in Spotify class object.hello()');
     console.log('Hello world - this is songs.js');
     console.log('apikey: ',this.apiKey);
+  }
+
+  // get Song from Spotify
+  getSong(searchName) {
+    console.log('in Spotify class object.getSong()');
+    console.log('search name is: ',searchName);
+    if (searchName === undefined) searchName = 'The Sign';
   }
 }
 

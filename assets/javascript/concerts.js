@@ -12,11 +12,19 @@ class BandsInTown {
     this.apiKey = apiKey;
     }
   //methods
-
+  
+  // remove this when done testing
   hello() {
     console.log('in OMDB class object.hello()');
     console.log('Hello world - this is concerts.js');
     console.log('apikey: ',this.apiKey);
+  }
+
+  // get Concert from Band In Town
+  getConcert(searchName) {
+    console.log('in BandsInTown class object.getConcert()');
+    console.log('search name is: ',searchName);
+    if (searchName === undefined) searchName = 'Bon Jovi';
   }
 }
 

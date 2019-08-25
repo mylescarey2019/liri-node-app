@@ -33,7 +33,7 @@ class FileManage {
       }
   
       // Otherwise, it will print: "movies.txt was updated!"
-      console.log("log.txt was updated!");
+      // console.log("log.txt was updated!");
   
     });
   }
