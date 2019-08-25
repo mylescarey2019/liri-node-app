@@ -11,26 +11,144 @@ console.log(("omdb: ",keys.omdb));
 // requires:
 // file system - for reading/writing files
 var fs = require("fs");
+// allow resolving of relative path not originating in current directory
+const path = require("path");
+
+// deprecated
+// fileCommand - logic to manage file read/write 
+var fileCommandClass = require("./fileCommand.js");
 
 // songs - logic to manage Spotify API
 var spotifyClass = require("./songs.js");
-// instansiate new Spotify object
-var mySpotify = new spotifyClass.Spotify(keys.spotify);
 
 // concerts - logic to manage Bands In Town API
 var bandsInTownClass = require("./concerts.js");
-// instansiate new BandsInTown object
-var myBandsInTown = new bandsInTownClass.BandsInTown(keys.bandsintown);
 
 // movies - logic to  manage OMDB API
 var OMDBClass = require("./movies.js");
+
+// require for inquier
+
+// require for string-simliar
+
+// instatiate objects 
+
+// deprecated
+// instansiate new file command object
+var myFileCommand = new fileCommandClass.FileManage();
+
 // instansiate new OMDB object
 var myOMDB = new OMDBClass.OMDB(keys.omdb);
+
+// instansiate new BandsInTown object
+var myBandsInTown = new bandsInTownClass.BandsInTown(keys.bandsintown);
+
+// instansiate new Spotify object
+var mySpotify = new spotifyClass.Spotify(keys.spotify);
+
+// global variables and functions
+var commandFileCommands = [];
+
+// function readCommandFile() {
+//   console.log('in global.readCommandFile');
+//   return fs.readFileSync(path.resolve(__dirname,"../files/random.txt"), "utf8");
+//   };
+
+
+// function readCommandFile() {
+//   console.log('in global.readCommandFile');
+//   fs.readFile(path.resolve(__dirname,"../files/random.txt"), "utf8", function(error, data) {
+
+//     // If the code experiences any errors it will log the error to the console.
+//     if (error) {
+//       return console.log(error);
+//     }
+
+//     // We will then print the contents of data
+//     // console.log(data);
+
+//     // Then split it by commas (to make it more readable)
+//     commandFileCommands = data.split(",");
+
+//     // We will then re-display the content as an array for later use.
+//     console.log(commandFileCommands);
+
+//   });
+// }
+
+// function appendToLog(command) {
+//   console.log('in global.appendToLog');
+//   fs.appendFile(path.resolve(__dirname,"../files/log.txt"), command, function(err) {
+ 
+//     // If the code experiences any errors it will log the error to the console.
+//     if (err) {
+//       return console.log(err);
+//     }
+
+//     // Otherwise, it will print: "movies.txt was updated!"
+//     console.log("log.txt was updated!");
+
+//   });
+// }
+
+// main program flow
 
 // test new objects
 mySpotify.hello();
 myBandsInTown.hello();
 myOMDB.hello();
+myFileCommand.hello();
+
+commandFileCommands = myFileCommand.readCommandInFile();
+console.log('commands returned from input file: ', commandFileCommands);
+
+// var readData = readCommandFile();
+// commandFileCommands = readData.split(",");
+// console.log('commands are: ' ,commandFileCommands);
+
+var sampleCommand = ['movie-this','europa report']
+myFileCommand.appendToLog(sampleCommand);
+
+
+// file command testing
+// console.log('command in file commands: ',commandFileCommands);
+// myFileCommand.readCommandInFile();
+// console.log('command in file commands: ',commandFileCommands);
+
+
+// // read in the file command data
+// fs.readFile("random.txt", "utf8", function(error, data) {
+
+//   // If the code experiences any errors it will log the error to the console.
+//   if (error) {
+//     return console.log(error);
+//   }
+
+//   // We will then print the contents of data
+//   console.log(data);
+
+//   // Then split it by commas (to make it more readable)
+//   var dataArr = data.split(",");
+
+//   // We will then re-display the content as an array for later use.
+//   console.log(dataArr);
+
+// });
+
+// // append this liri's command to the log file
+// var sampleCommand = 'movie-this europa report';
+// fs.writeFile("log.txt", sampleCommand, function(err) {
+
+//   // If the code experiences any errors it will log the error to the console.
+//   if (err) {
+//     return console.log(err);
+//   }
+
+//   // Otherwise, it will print: "movies.txt was updated!"
+//   console.log("log.txt was updated!");
+
+// });
+
 
 // now should be able to access key information like so:
 // i am thinking this is instaniationg a new instance
