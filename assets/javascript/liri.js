@@ -16,7 +16,7 @@ const path = require("path");
 // fileCommand - logic to manage file read/write 
 var fileCommandClass = require("./fileCommand.js");
 // songs - logic to manage Spotify API
-var spotifyClass = require("./songs.js");
+var musicClass = require("./songs.js");
 // concerts - logic to manage Bands In Town API
 var bandsInTownClass = require("./concerts.js");
 // movies - logic to  manage OMDB API
@@ -35,11 +35,12 @@ var stringSimilarity = require('string-similarity');
 // instansiate new file command object
 var myFileCommand = new fileCommandClass.FileManage();
 // instansiate new OMDB object
+
 var myOMDB = new OMDBClass.OMDB(keys.omdb);
 // instansiate new BandsInTown object
 var myBandsInTown = new bandsInTownClass.BandsInTown(keys.bandsintown);
 // instansiate new Spotify object
-var mySpotify = new spotifyClass.Spotify(keys.spotify);
+var myMusic = new musicClass.Music();
 
 // holds command read from the input command file 'random.txt'
 var commandFileCommands = [];
@@ -89,7 +90,7 @@ function checkCommand(command) {
 
    // API call logic switch
    switch (liriCommand) {
-    case 'spotify-this': mySpotify.getSong(liriSearchArg)
+    case 'spotify-this': myMusic.getSong(liriSearchArg)
       break;
   
     case 'concert-this': myBandsInTown.getConcert(liriSearchArg)

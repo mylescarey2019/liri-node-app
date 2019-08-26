@@ -36,7 +36,7 @@ class BandsInTown {
     // console.log('search name is: ',searchName);
 
     var urlArtist = searchName.toLowerCase().replace(' ','+');
-    var apiURL = "https://rest.bandsintown.com/artists/" + urlArtist + "/events?app_id=codingbootcamp"
+    var apiURL = "https://rest.bandsintown.com/artists/" + urlArtist + "/events?app_id=" + this.apiKey.id; //process.env.BANDS_IN_TOWN_ID;
     // https://rest.bandsintown.com/artists/john%20mayer/events?app_id=codingbootcamp
     // Then run a request with axios to the OMDB API with the movie specified
     axios.get(apiURL).then(

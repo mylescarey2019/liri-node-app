@@ -26,7 +26,7 @@ class OMDB {
     // console.log('search name is: ',searchName);
 
     var urlMovieTitle = searchName.toLowerCase().replace(' ','+');
-    var apiURL = "http://www.omdbapi.com/?t=" + urlMovieTitle + "&y=&plot=short&apikey=trilogy"
+    var apiURL = "http://www.omdbapi.com/?t=" + urlMovieTitle + "&y=&plot=short&apikey=" + this.apiKey.id;
     // Then run a request with axios to the OMDB API with the movie specified
     axios.get(apiURL).then(
       function(response) {
