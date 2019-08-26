@@ -123,12 +123,12 @@ commandFileCommands = myFileCommand.readCommandInFile().split(' ');
 
 var [fileCommand, ...fileArgs] = commandFileCommands;
 var fileSearchArg = fileArgs.join(' ');
-console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
+// console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
 
 // capture command line entries
 var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
 var liriSearchArg = liriArgs.join(' ');
-console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
+// console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
 
 
 // Now check the commands entered - via command line and/or file
@@ -144,7 +144,7 @@ else {
           // ignore file command of do-what-it-says !
           // file command is invalid
           if (apiCommandList.indexOf(fileCommand) === -1) {
-            console.log('file command is invalid or file parameter is missing');
+            // console.log('file command is invalid or file parameter is missing');
             readyForAPICall = false;
             liriCommand = fileCommand;
             liriSearchArg = fileSearchArg;

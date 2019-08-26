@@ -48,6 +48,7 @@ class Music {
         // console.log(response.tracks.items);
         var songs = response.tracks.items;
         var recodingOccurance = 1;
+        var songFooter = '===========================================';
         songs.forEach(recording => {
           var allArtists = '';
           var firstArtist = true;
@@ -60,14 +61,34 @@ class Music {
               allArtists += ', ' + artist.name;
             }; 
           });
-          console.log(`<< ${recodingOccurance} >>`);
-          console.log("artist: " + allArtists);
-          console.log("song name: " + recording.name);
-          console.log("preview song: ", (recording.preview_url === null) ? 'not available' : recording.preview_url);
-          console.log("album name: " + recording.album.name);
-          console.log('===========================================');
-          
+          var songNumber = `<< ${recodingOccurance} >>`;
+          var songArtists = "artist: " + allArtists;
+          var songName = "song name: " + recording.name;
+          var songPreview = "preview song: " + ((recording.preview_url === null) ? 'not available' : recording.preview_url);
+          var songAlbum = "album name: " + recording.album.name;
+          console.log(songNumber);
+          myFileCommand.appendToLog(songNumber);
+          console.log(songArtists);
+          myFileCommand.appendToLog(songArtists);
+          console.log(songName);
+          myFileCommand.appendToLog(songName);
+          console.log(songPreview);
+          myFileCommand.appendToLog(songPreview);
+          console.log(songAlbum);
+          myFileCommand.appendToLog(songAlbum);
+          console.log(songFooter);
+          myFileCommand.appendToLog(songFooter);
+
           recodingOccurance++;
+          
+          // console.log(`<< ${recodingOccurance} >>`);
+          // console.log("artist: " + allArtists);
+          // console.log("song name: " + recording.name);
+          // console.log("preview song: ", (recording.preview_url === null) ? 'not available' : recording.preview_url);
+          // console.log("album name: " + recording.album.name);
+          // console.log('===========================================');
+          
+
         });
       })
       .catch(function(err) {
