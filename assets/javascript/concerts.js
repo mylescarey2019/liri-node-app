@@ -14,16 +14,17 @@ class BandsInTown {
   //methods
   
   // remove this when done testing
-  hello() {
-    console.log('in OMDB class object.hello()');
-    console.log('Hello world - this is concerts.js');
-    console.log('apikey: ',this.apiKey);
-  }
+  // hello() {
+  //   console.log('in OMDB class object.hello()');
+  //   console.log('Hello world - this is concerts.js');
+  //   console.log('apikey: ',this.apiKey);
+  // }
 
   // get Concert from Band In Town
   getConcert(searchName) {
     console.log('in BandsInTown class object.getConcert()');
     if (searchName === '') searchName = 'Bon Jovi';
+    console.log('apikey: ',this.apiKey);
     console.log('search name is: ',searchName);
   }
 }

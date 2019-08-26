@@ -26,7 +26,6 @@ var OMDBClass = require("./movies.js");
 var moment = require("moment");
 
 // require for inquier
-var inquirer = require("inquirer");
 
 // require for string-simliar
 var stringSimilarity = require('string-similarity');
@@ -58,12 +57,11 @@ var apiCommandList = ['spotify-this','movie-this','concert-this'];
 
  // function check if typing was close to valid command 
  // want to leverage this using inquirier if time permits
-function checkCommand(command) {
+function checkCommand(command,commandInputValue) {
   console.log('in global.checkCommand');
   var matchResult = stringSimilarity.findBestMatch(command,fuzzyCommandList);
   console.log('string check object is:  ',matchResult);
-  return matchResult.bestMatch.target;
-  // console.log('did you mean: ', matchResult.bestMatch.target + ' ' + commandInputValue);
+  console.log('did you mean: ', matchResult.bestMatch.target + ' ' + commandInputValue);
   // string check object is:   {
   //   ratings: [
   //     { target: 'spotify-this', rating: 0.42105263157894735 },
@@ -74,39 +72,6 @@ function checkCommand(command) {
   //   bestMatch: { target: 'movie-this', rating: 0.8235294117647058 },
   //   bestMatchIndex: 1
 };  
-
-
- // function check if typing was close to valid command 
- // want to leverage this using inquirier if time permits
- function apiSwitch() {
-   console.log('in global.apiSwitch');
-   if (!readyForAPICall) {
-     console.log('ready for API - fuzzy answer - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-   }
-   else {
-     console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-   };
-   // append command to log
-   myFileCommand.appendToLog(liriCommand + ' ' + liriSearchArg);
-
-   // API call logic switch
-   switch (liriCommand) {
-    case 'spotify-this': mySpotify.getSong(liriSearchArg)
-      break;
-  
-    case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
-      break;  
-  
-    case 'movie-this': myOMDB.getMovie(liriSearchArg)
-      break;   
-  
-    default:
-      break;
-  }
-};
-
-
-
 
 //-------------------------------------------------------------------
 // main program flow
@@ -124,18 +89,21 @@ console.log('commands returned from input file: ', commandFileCommands);
 
 var [fileCommand, ...fileArgs] = commandFileCommands;
 var fileSearchArg = fileArgs.join(' ');
-console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
+console.log('file command entered: ',fileCommand);
+console.log('file command input entered ',fileSearchArg);
+
 
 // capture command line entries
 var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
 var liriSearchArg = liriArgs.join(' ');
-console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
+console.log('liri command entered: ',liriCommand);
+console.log('lire command input entered ',liriSearchArg);
 
-
-// Now check the commands entered - via command line and/or file
+// if liri command is invalid 
 if (validCommands.indexOf(liriCommand) === -1) {
   // invalid command
   console.log(liriCommand + ' is not valid command');
+  checkCommand(liriCommand,liriSearchArg);
   readyForAPICall = false;
 } // liri command is valid see if its do-what-it-says
 else {
@@ -157,105 +125,29 @@ else {
       }
     };
 
-// now get ready to call API or prompt the user about what they miss-typed
-// if not valid input then ask to try fuzzy answer instead
-if (!readyForAPICall) {
-  // get fuzzy answer using the string-simularity npm package
-  var fuzzyPick =  checkCommand(liriCommand);
- 
-  inquirer
-    .prompt([
-      {
-        type: "confirm",
-        message: "Did you mean:   " + fuzzyPick + ' ' + liriSearchArg,
-        name: "confirm",
-        default: true
-      }
-
-    ])
-    .then(function(response) {
-      console.log(response);
-      // If the inquirerResponse confirms then proceed with API call based on fuzzy pick
-      if (response.confirm) {
-        // console.log('you meant to type: ', fuzzyPick + ' ' + liriSearchArg);
-        // console.log('ready for API - fuzzy version - command is: ' + fuzzyPick + ' search term is: ' + liriSearchArg);
-        liriCommand = fuzzyPick;
-        // main logic switch 
-        apiSwitch();
-        // switch (liriCommand) {
-        //   case 'spotify-this': mySpotify.getSong(liriSearchArg)
-        //     break;
-      
-        //   case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
-        //     break;  
-      
-        //   case 'movie-this': myOMDB.getMovie(liriSearchArg)
-        //     break;   
-      
-        //   default:
-        //     break;
-        // }
-      }
-      else {
-        console.log('The command: ' + liriCommand + ' search term: ' + liriSearchArg + ' is invalid');
-        console.log('Valid commands are: spotify-this songname, movie-this moviename, concert-this artist');
-        console.log('or:  do-what-it-says to execute command in the random.txt file.');
-      }
-    });
-
-
-
-}
-else {  // ready for API Call
-  // console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
+// if no valid command break out
+if (readyForAPICall) {
+  console.log('ready for API - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
   // main logic switch 
-  apiSwitch();
-  // switch (liriCommand) {
-  //   case 'spotify-this': mySpotify.getSong(liriSearchArg)
-  //     break;
+  switch (liriCommand) {
+    case 'spotify-this': mySpotify.getSong(liriSearchArg)
+      break;
 
-  //   case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
-  //     break;  
+    case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
+      break;  
 
-  //   case 'movie-this': myOMDB.getMovie(liriSearchArg)
-  //     break;   
+    case 'movie-this': myOMDB.getMovie(liriSearchArg)
+      break;   
 
-  //   default:
-  //     break;
-  // }
+    default:
+      break;
+  }
+}
+else {
+  console.log('The command: ' + liriCommand + ' search term: ' + liriSearchArg + ' is invalid');
+  console.log('Valid commands are: spotify-this songname, movie-this moviename, conert-this artist');
+  console.log('or:  do-what-it-says to execute command in the random.txt file.');
 };
-
-
-
-// //    if Y then run it
-// //          checkCommand(liriCommand,liriSearchArg);
-// //    if N then show valid commands and exit
-// // if valid input then proceed
-
-
-// // if no valid command break out
-// if (readyForAPICall) {
-//   console.log('ready for API - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-//   // main logic switch 
-//   switch (liriCommand) {
-//     case 'spotify-this': mySpotify.getSong(liriSearchArg)
-//       break;
-
-//     case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
-//       break;  
-
-//     case 'movie-this': myOMDB.getMovie(liriSearchArg)
-//       break;   
-
-//     default:
-//       break;
-//   }
-// }
-// else {
-//   console.log('The command: ' + liriCommand + ' search term: ' + liriSearchArg + ' is invalid');
-//   console.log('Valid commands are: spotify-this songname, movie-this moviename, conert-this artist');
-//   console.log('or:  do-what-it-says to execute command in the random.txt file.');
-// };
  
 
 

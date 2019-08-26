@@ -14,16 +14,17 @@ class OMDB {
   //methods
 
   // remove this when done testing
-  hello() {
-    console.log('in OMDB class object.hello()');
-    console.log('Hello world - this is movies.js');
-    console.log('apikey: ',this.apiKey);
-  }
+  // hello() {
+  //   console.log('in OMDB class object.hello()');
+  //   console.log('Hello world - this is movies.js');
+  //   console.log('apikey: ',this.apiKey);
+  // }
 
   // get Song from Spotify
   getMovie(searchName) {
     console.log('in OMDB class object.getMovie()');
     if (searchName === '') searchName = 'Mr. NoBody';
+    console.log('apikey: ',this.apiKey);
     console.log('search name is: ',searchName);
   }
 }
