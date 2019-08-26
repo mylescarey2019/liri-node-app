@@ -79,13 +79,14 @@ function checkCommand(command) {
  // function check if typing was close to valid command 
  // want to leverage this using inquirier if time permits
  function apiSwitch() {
-   console.log('in global.apiSwitch');
-   if (!readyForAPICall) {
-     console.log('ready for API - fuzzy answer - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-   }
-   else {
-     console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-   };
+  //  console.log('in global.apiSwitch');
+  //  if (!readyForAPICall) {
+  //    console.log('ready for API - fuzzy answer - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
+  //  }
+  //  else {
+  //    console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
+  //  };
+  
    // append command to log
    myFileCommand.appendToLog(liriCommand + ' ' + liriSearchArg);
 
@@ -120,26 +121,26 @@ function checkCommand(command) {
 
 // capture file line entries
 commandFileCommands = myFileCommand.readCommandInFile().split(' ');
-console.log('commands returned from input file: ', commandFileCommands);
+// console.log('commands returned from input file: ', commandFileCommands);
 
 var [fileCommand, ...fileArgs] = commandFileCommands;
 var fileSearchArg = fileArgs.join(' ');
-console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
+// console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
 
 // capture command line entries
 var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
 var liriSearchArg = liriArgs.join(' ');
-console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
+// console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
 
 
 // Now check the commands entered - via command line and/or file
 if (validCommands.indexOf(liriCommand) === -1) {
   // invalid command
-  console.log(liriCommand + ' is not valid command');
+  // console.log(liriCommand + ' is not valid command');
   readyForAPICall = false;
 } // liri command is valid see if its do-what-it-says
 else {
-      console.log(liriCommand + ' is valid command');
+      // console.log(liriCommand + ' is valid command');
       // if calling for file command input reset values
       if (liriCommand === 'do-what-it-says') { 
           // ignore file command of do-what-it-says !

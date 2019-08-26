@@ -3,9 +3,11 @@
 // Include the axios npm package 
 var axios = require("axios");
 
-// will need a class named OMDB with constuctor of key
+// fileCommand - logic to manage file read/write 
+var fileCommandClass = require("./fileCommand.js");
 
-// will need to be able to do this:
+// instansiate new file command object
+var myFileCommand = new fileCommandClass.FileManage();
 
 // node liri.js movie-this '<movie name here>'
 
@@ -37,10 +39,10 @@ class OMDB {
 
   // get Movie from OMDB API
   getMovie(searchName) {
-    console.log('in OMDB class object.getMovie()');
+    // console.log('in OMDB class object.getMovie()');
     if (searchName === '') searchName = 'Mr. NoBody';
-    console.log('apikey: ',this.apiKey);
-    console.log('search name is: ',searchName);
+    // console.log('apikey: ',this.apiKey);
+    // console.log('search name is: ',searchName);
 
     var urlMovieTitle = searchName.toLowerCase().replace(' ','+');
     var apiURL = "http://www.omdbapi.com/?t=" + urlMovieTitle + "&y=&plot=short&apikey=trilogy"
@@ -48,7 +50,7 @@ class OMDB {
     axios.get(apiURL).then(
     // axios.get("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy").then(
       function(response) {
-        console.log(response);
+        // console.log(response);
         //    * Title of the movie.
         //    * Year the movie came out.
         //    * IMDB Rating of the movie.
@@ -57,21 +59,25 @@ class OMDB {
         //    * Language of the movie.
         //    * Plot of the movie.
         //    * Actors in the movie.
-        console.log("The movie's title is: " + response.data.Title);
-        console.log("The movie's year is: " + response.data.Year);
-        console.log("The movie's imdb rating is: " + response.data.imdbRating);
-        console.log("The movie's rotten tomatoes rating is: " + response.data);
-        console.log(response.data);
-        console.log(response.data.Ratings[0].Source);
-        console.log(response.data.Ratings[0].Value);
-        console.log(response.data.Ratings[1].Source);
-        console.log(response.data.Ratings[1].Value);
-        console.log(response.data.Ratings[2].Source);
-        console.log(response.data.Ratings[2].Value);
-        console.log("The movie's country is: " + response.data.Country);
-        console.log("The movie's language is: " + response.data.Language);
-        console.log("The movie's plot is: " + response.data.Plot);
-        console.log("The movie's actors is: " + response.data.Actors);
+        console.log('Title: ' +response.data.Title);
+        myFileCommand.appendToLog('Title: ' +response.data.Title);
+        console.log('Year: ' + response.data.Year);
+        myFileCommand.appendToLog('Year: ' + response.data.Year);
+        console.log('Rated: ' + response.data.Rated);
+        myFileCommand.appendToLog('Rated: ' + response.data.Rated);
+        console.log('IMDB Rating: ' + response.data.imdbRating);
+        myFileCommand.appendToLog('IMDB Rating: ' + response.data.imdbRating);
+        console.log('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
+        myFileCommand.appendToLog('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
+        // console.log(response.data.Ratings[1].Source);
+        console.log("Country: " + response.data.Country);
+        myFileCommand.appendToLog("Country: " + response.data.Country);
+        console.log("Language: " + response.data.Language);
+        myFileCommand.appendToLog("Language: " + response.data.Language);
+        console.log("Plot: " + response.data.Plot);
+        myFileCommand.appendToLog("Plot: " + response.data.Plot);
+        console.log("Actors: " + response.data.Actors);
+        myFileCommand.appendToLog("Actors: " + response.data.Actors);
       })
       .catch(function(error) {
         if (error.response) {

@@ -1,6 +1,6 @@
 // API Key files
 
-console.log('In keys.js for API keys');
+// console.log('In keys.js for API keys');
 
 // export the spotify key using dotenv package and .env file content
 exports.spotify = {

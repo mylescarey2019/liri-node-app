@@ -10,21 +10,21 @@ class FileManage {
 
   //methods
 
-  hello() {
-    console.log('in fileManage class object.hello()');
-    console.log('Hello world - this is fileCommand.js');
-  }
+  // hello() {
+  //   console.log('in fileManage class object.hello()');
+  //   console.log('Hello world - this is fileCommand.js');
+  // }
 
    // read in the file command data - sync
    readCommandInFile() {
-    console.log('in FileManage Class.readCommandInFile');
+    // console.log('in FileManage Class.readCommandInFile');
     return fs.readFileSync(path.resolve(__dirname,"../files/random.txt"), "utf8");
   }
 
 
   // append this liri's command to the log file
   appendToLog(command) {
-    console.log('in FileManage Class.appendToLog');
+    // console.log('in FileManage Class.appendToLog');
     fs.appendFile(path.resolve(__dirname,"../files/log.txt"), '\n' + command, function(err) {
    
       // If the code experiences any errors it will log the error to the console.
