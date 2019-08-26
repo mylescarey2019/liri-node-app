@@ -81,27 +81,7 @@ class OMDB {
         myFileCommand.appendToLog(moviePlot);
         console.log(movieActors);
         myFileCommand.appendToLog(movieActors);
-        
 
-        // console.log('Title: ' + response.data.Title);
-        // myFileCommand.appendToLog('Title: ' + response.data.Title);
-        // console.log('Year: ' + response.data.Year);
-        // myFileCommand.appendToLog('Year: ' + response.data.Year);
-        // console.log('Rated: ' + response.data.Rated);
-        // myFileCommand.appendToLog('Rated: ' + response.data.Rated);
-        // console.log('IMDB Rating: ' + response.data.imdbRating);
-        // myFileCommand.appendToLog('IMDB Rating: ' + response.data.imdbRating);
-        // console.log('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
-        // myFileCommand.appendToLog('Rotten Tomatoes Rating: ' + response.data.Ratings[1].Value);
-        // // console.log(response.data.Ratings[1].Source);
-        // console.log("Country: " + response.data.Country);
-        // myFileCommand.appendToLog("Country: " + response.data.Country);
-        // console.log("Language: " + response.data.Language);
-        // myFileCommand.appendToLog("Language: " + response.data.Language);
-        // console.log("Plot: " + response.data.Plot);
-        // myFileCommand.appendToLog("Plot: " + response.data.Plot);
-        // console.log("Actors: " + response.data.Actors);
-        // myFileCommand.appendToLog("Actors: " + response.data.Actors);
       })
       .catch(function(error) {
         if (error.response) {

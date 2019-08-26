@@ -67,7 +67,8 @@ Static pics:
 
 ## Help
 
-For further development details see [UseCases and Psuedo Code](UseCases-PsuedoCode.md)
+For further development details see:  [UseCases and Psuedo Code](UseCases-PsuedoCode.md)
+and [Test Cases](TestCases.md)
 
 ## Authors
 

@@ -12,22 +12,14 @@ var moment = require("moment");
 // instansiate new file command object
 var myFileCommand = new fileCommandClass.FileManage();
 
-// node liri.js concert-this <artist/band name here>
-
 // class for BandsInTown object to manage concert inquiries
 class BandsInTown {
   constructor(apiKey) {
     this.apiKey = apiKey;
     }
-  //methods
-  
-  // remove this when done testing
-  // hello() {
-  //   console.log('in OMDB class object.hello()');
-  //   console.log('Hello world - this is concerts.js');
-  //   console.log('apikey: ',this.apiKey);
-  // }
 
+  //methods
+ 
   // get Concert from Bands In Town API
   getConcert(searchName) {
     // console.log('in BandsInTown class object.getConcert()');
