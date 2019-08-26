@@ -57,9 +57,9 @@ var apiCommandList = ['spotify-this','movie-this','concert-this'];
  // function check if typing was close to valid command 
  // want to leverage this using inquirier if time permits
 function checkCommand(command) {
-  console.log('in global.checkCommand');
+  // console.log('in global.checkCommand');
   var matchResult = stringSimilarity.findBestMatch(command,fuzzyCommandList);
-  console.log('string check object is:  ',matchResult);
+  // console.log('string check object is:  ',matchResult);
   return matchResult.bestMatch.target;
   // console.log('did you mean: ', matchResult.bestMatch.target + ' ' + commandInputValue);
   // string check object is:   {
@@ -123,12 +123,12 @@ commandFileCommands = myFileCommand.readCommandInFile().split(' ');
 
 var [fileCommand, ...fileArgs] = commandFileCommands;
 var fileSearchArg = fileArgs.join(' ');
-// console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
+console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
 
 // capture command line entries
 var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
 var liriSearchArg = liriArgs.join(' ');
-// console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
+console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
 
 
 // Now check the commands entered - via command line and/or file
@@ -173,7 +173,7 @@ if (!readyForAPICall) {
 
     ])
     .then(function(response) {
-      console.log(response);
+      // console.log(response);
       // If the inquirerResponse confirms then proceed with API call based on fuzzy pick
       if (response.confirm) {
         // console.log('you meant to type: ', fuzzyPick + ' ' + liriSearchArg);

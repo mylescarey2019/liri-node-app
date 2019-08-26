@@ -36,6 +36,16 @@ Static pics:
 
 ## Getting Started
 
+### Native and NPM Packages Used
+0.  fs and path - for file I/O tasks
+1.  axios     - for http api calls
+2.  dotenv    - for setting environment variable to hold api keys
+3.  inquirer  - for interactive command line response on command typos
+4.  moment    - for date-time formatting
+5.  node-spotify-api  - to interact with Spotify API
+6.  string-similarity - to find most likely intended command for command typos
+
+
 ### Dependencies
 
 * none 

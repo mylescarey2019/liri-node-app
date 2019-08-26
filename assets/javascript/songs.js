@@ -32,28 +32,82 @@ class Music {
 
   // get Song from Spotify API
   getSong(searchName) {
-    console.log('in Music class object.getSong()');
-    if (searchName === '') searchName = 'The Sign';
-    console.log('spotify id: ',process.env.SPOTIFY_ID);
-    console.log('spotify secret: ',process.env.SPOTIFY_SECRET);
-    console.log('search name is: ',searchName);
+    // console.log('in Music class object.getSong()');
+    if (searchName === '') searchName = 'If You See Kay';
+    // console.log('spotify id: ',process.env.SPOTIFY_ID);
+    // console.log('spotify secret: ',process.env.SPOTIFY_SECRET);
+    // console.log('search name is: ',searchName);
 
 
-    spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
-      if (err) {
-        return console.log('Error occurred: ' + err);
-      }
+
+    // spotify API search
+    spotify.search({ type: 'track', query: searchName })
+    // spotify.search({ type: 'track', query: 'I Just Can\'t Stop Loving You' })
+      .then(function(response) {
+        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        // console.log(response.tracks.items);
+        var songs = response.tracks.items;
+        var recodingOccurance = 1;
+        songs.forEach(recording => {
+          var allArtists = '';
+          var firstArtist = true;
+          recording.artists.forEach(artist => {
+            if (firstArtist) {
+              allArtists = artist.name;
+              firstArtist = false;
+            }
+            else {
+              allArtists += ', ' + artist.name;
+            }; 
+          });
+          console.log(`<< ${recodingOccurance} >>`);
+          console.log("artist: " + allArtists);
+          console.log("song name: " + recording.name);
+          console.log("preview song: ", (recording.preview_url === null) ? 'not available' : recording.preview_url);
+          console.log("album name: " + recording.album.name);
+          console.log('===========================================');
+          
+          recodingOccurance++;
+        });
+      })
+      .catch(function(err) {
+        console.log(err);
+      });
+
+    }  
+}
+
+    // // spotify.search({ type: 'track', query: 'All the Small Things' }, function(err, data) {
+    // spotify.search({ type: 'track', query: 'Jackson' }, function(err, data) {  
+    //   if (err) {
+    //     return console.log('Error occurred: ' + err);
+    //   }
       
-      // Artist(s)
-      // The song's name
-      // A preview link of the song from Spotify
-      // The album that the song is from
-      console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-      var songs = data.tracks.items;
-      console.log("artist: " + songs[0].artists[0].name);
-      console.log("song name: " + songs[0].name);
-      console.log("preview song: ", (songs[0].album.preview_url === undefined) ? 'not available' : songs[0].album.preview_url);
-      console.log("album name: " + songs[0].album.name);
+    //   // Artist(s)
+    //   // The song's name
+    //   // A preview link of the song from Spotify
+    //   // The album that the song is from
+    //   console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+    //   var songs = data.tracks.items;
+    //   var recodingOccurance = 1;
+    //   songs.forEach(recording => {
+    //     console.log(`< ${recodingOccurance} >`);
+        
+    //     console.log("artist: " + recording.artists[0].name);
+    //     console.log("song name: " + recording.name);
+    //     console.log("preview song: ", (recording.album.preview_url === undefined) ? 'not available' : recording.album.preview_url);
+    //     console.log("album name: " + recording.album.name);
+    //     recodingOccurance++
+    //     // console.log(data.tracks.items[0].artists[0].name);
+    //   });
+
+      // var songs = data.tracks.items;
+      // console.log("artist: " + songs[0].artists[0].name);
+      // console.log("song name: " + songs[0].name);
+      // console.log("preview song: ", (songs[0].album.preview_url === undefined) ? 'not available' : songs[0].album.preview_url);
+      // console.log("album name: " + songs[0].album.name);
+      // console.log(data.tracks.items[0].artists[0].name);
+      
       
       
       
@@ -68,7 +122,7 @@ class Music {
 
 
     // console.log(data); 
-    });
+    // });
 
     // var urlArtist = searchName.toLowerCase().replace(' ','+');
     // var apiURL = "https://rest.bandsintown.com/artists/" + urlArtist + "/events?app_id=codingbootcamp"
@@ -117,8 +171,7 @@ class Music {
     //     }
     //     console.log(error.config);
     //   });
-  }
-}
+
 
 
 
