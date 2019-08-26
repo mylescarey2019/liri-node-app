@@ -20,7 +20,7 @@ class BandsInTown {
   //   console.log('apikey: ',this.apiKey);
   // }
 
-  // get Concert from Band In Town
+  // get Concert from Bands In Town API
   getConcert(searchName) {
     console.log('in BandsInTown class object.getConcert()');
     if (searchName === '') searchName = 'Bon Jovi';

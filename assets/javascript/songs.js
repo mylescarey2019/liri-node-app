@@ -17,7 +17,7 @@ class Spotify {
   //   console.log('apikey: ',this.apiKey);
   // }
 
-  // get Song from Spotify
+  // get Song from Spotify API
   getSong(searchName) {
     console.log('in Spotify class object.getSong()');
     if (searchName === '') searchName = 'The Sign';
