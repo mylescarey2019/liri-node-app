@@ -20,8 +20,8 @@ class Spotify {
   // get Song from Spotify
   getSong(searchName) {
     console.log('in Spotify class object.getSong()');
+    if (searchName === '') searchName = 'The Sign';
     console.log('search name is: ',searchName);
-    if (searchName === undefined) searchName = 'The Sign';
   }
 }
 

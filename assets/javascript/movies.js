@@ -23,8 +23,8 @@ class OMDB {
   // get Song from Spotify
   getMovie(searchName) {
     console.log('in OMDB class object.getMovie()');
+    if (searchName === '') searchName = 'Mr. NoBody';
     console.log('search name is: ',searchName);
-    if (searchName === undefined) searchName = 'Mr. NoBody';
   }
 }
 

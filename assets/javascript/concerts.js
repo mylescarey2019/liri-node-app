@@ -23,8 +23,8 @@ class BandsInTown {
   // get Concert from Band In Town
   getConcert(searchName) {
     console.log('in BandsInTown class object.getConcert()');
+    if (searchName === '') searchName = 'Bon Jovi';
     console.log('search name is: ',searchName);
-    if (searchName === undefined) searchName = 'Bon Jovi';
   }
 }
 

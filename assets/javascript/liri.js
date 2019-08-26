@@ -46,12 +46,17 @@ var mySpotify = new spotifyClass.Spotify(keys.spotify);
 // holds command read from the input command file 'random.txt'
 var commandFileCommands = [];
 
+// flag used during parameter validation - this should be refactored
+var readyForAPICall = true;
+
 // valid liri commands
 var validCommands = ['spotify-this','movie-this','concert-this','do-what-it-says'];
 var fuzzyCommandList = ['spotify-this','movie-this','concert-this'];
+var apiCommandList = ['spotify-this','movie-this','concert-this'];
 
 
- // function check if typing was close to valid command {
+ // function check if typing was close to valid command 
+ // want to leverage this using inquirier if time permits
 function checkCommand(command,commandInputValue) {
   console.log('in global.checkCommand');
   var matchResult = stringSimilarity.findBestMatch(command,fuzzyCommandList);
@@ -78,67 +83,76 @@ function checkCommand(command,commandInputValue) {
 // myOMDB.hello();
 // myFileCommand.hello();
 
-commandFileCommands = myFileCommand.readCommandInFile();
+// capture file line entries
+commandFileCommands = myFileCommand.readCommandInFile().split(' ');
 console.log('commands returned from input file: ', commandFileCommands);
 
+var [fileCommand, ...fileArgs] = commandFileCommands;
+var fileSearchArg = fileArgs.join(' ');
+console.log('file command entered: ',fileCommand);
+console.log('file command input entered ',fileSearchArg);
+
+
 // capture command line entries
-// have to figure out how to deal with spaces in input parameter
-// have to remember to apply a default input parameter for each 3 core types
-
-liriCommand = process.argv[2];
-liriCommandInput = process.argv[3];
-
+var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
+var liriSearchArg = liriArgs.join(' ');
 console.log('liri command entered: ',liriCommand);
-console.log('lire command input entered ',liriCommandInput);
+console.log('lire command input entered ',liriSearchArg);
 
-
-
+// if liri command is invalid 
 if (validCommands.indexOf(liriCommand) === -1) {
   // invalid command
   console.log(liriCommand + ' is not valid command');
-  checkCommand(liriCommand,liriCommandInput);
-}
-// valid command - see if its do-what-it-says
+  checkCommand(liriCommand,liriSearchArg);
+  readyForAPICall = false;
+} // liri command is valid see if its do-what-it-says
 else {
-  console.log(liriCommand + ' is valid command');
-  // if calling for file command input reset values
-  // to those from the file and at this point force to another valid 
-  // command if operand is missing - refactor for robustness later
-  if (liriCommand === 'do-what-it-says') {
-    if (validCommands.indexOf(commandFileCommands[0]) === -1) {
-      console.log(commandFileCommands[0] + ' from file is not valid command');
-      //  force a valid search for now
-      liriCommand = 'spotify-this'
-      liriCommandInput = 'This Sign'
-    }
-    else {   // valid search but if term was missing force one
-      console.log(commandFileCommands[0] + ' from file is valid command');
-      liriCommand = commandFileCommands[0];
-      liriCommandInput = (commandFileCommands[1] === undefined) ? 'The Sign' : commandFileCommands[1];
+      console.log(liriCommand + ' is valid command');
+      // if calling for file command input reset values
+      if (liriCommand === 'do-what-it-says') { 
+          // ignore file command of do-what-it-says !
+          // file command is invalid
+          if (apiCommandList.indexOf(fileCommand) === -1) {
+            console.log('file command is invalid or file parameter is missing');
+            readyForAPICall = false;
+            liriCommand = fileCommand;
+            liriSearchArg = fileSearchArg;
+          }
+          else { // valid - set to the lire variables 
+                liriCommand = fileCommand;
+                liriSearchArg = fileSearchArg;
+          }
       }
-    }     
-};
+    };
 
-console.log('ready for API - command is ' + liriCommand + ' term is ' + liriCommandInput);
+// if no valid command break out
+if (readyForAPICall) {
+  console.log('ready for API - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
+  // main logic switch 
+  switch (liriCommand) {
+    case 'spotify-this': mySpotify.getSong(liriSearchArg)
+      break;
 
-// need a section to capture user correction on typo
-// with suggestion presented via checkCommand
- 
-// main logic switch 
-switch (liriCommand) {
-  case 'spotify-this': mySpotify.getSong(liriCommandInput)
-    break;
+    case 'concert-this': myBandsInTown.getConcert(liriSearchArg)
+      break;  
 
-  case 'concert-this': myBandsInTown.getConcert(liriCommandInput)
-    break;  
+    case 'movie-this': myOMDB.getMovie(liriSearchArg)
+      break;   
 
-  case 'movie-this': myOMDB.getMovie(liriCommandInput)
-    break;   
-
-  default:
-    break;
+    default:
+      break;
+  }
 }
+else {
+  console.log('The command: ' + liriCommand + ' search term: ' + liriSearchArg + ' is invalid');
+  console.log('Valid commands are: spotify-this songname, movie-this moviename, conert-this artist');
+  console.log('or:  do-what-it-says to execute command in the random.txt file.');
+};
+ 
 
+
+
+ 
 
 
 
