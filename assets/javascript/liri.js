@@ -22,9 +22,6 @@ var bandsInTownClass = require("./concerts.js");
 // movies - logic to  manage OMDB API
 var OMDBClass = require("./movies.js");
 
-// require for moment
-var moment = require("moment");
-
 // require for inquier
 var inquirer = require("inquirer");
 
@@ -86,7 +83,7 @@ function checkCommand(command) {
   //  else {
   //    console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
   //  };
-  
+
    // append command to log
    myFileCommand.appendToLog(liriCommand + ' ' + liriSearchArg);
 
