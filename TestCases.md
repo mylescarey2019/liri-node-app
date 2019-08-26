@@ -24,6 +24,12 @@ Functionality Cases
         1. spotify-this the golden state
         2. spotify-this my way
         3. spotify-this loser   
+
+Results: 
+![test group 1 ](assets/images/liri-test-1.gif)
+
+    Results:  ![test group 1](assets/images/liri test section 1.gif)
+
     4. expect do-what-it-says to read random.txt file and process its command
         1. movie-this jaws - expect movie listings
         2. concert-this the killers - expect concert listings
@@ -32,11 +38,18 @@ Functionality Cases
         5. do-what-it-says  - will prompt user if they meant closet match
             1. which will be concert-this and will not have a parameter - see 2.1 below
         6. To-Do:  liri will not gracefully handle a missing random.txt file
+
+Results: 
+![test group 1 ](assets/images/liri-test-1.gif)
+
 2. Valid command / missing parameter
     1. expect default parameter values to be applied
         1. movie-this   - expect:  mr. nobody
         2. concert-this - expect:  bon jovi
         3. spotify-this - expect:  if you see kay
+
+Results: 
+![test group 1 ](assets/images/liri-test-1.gif)
 
 3. Command Typo - Best Match logic
     1. mis-type the command and string-similarity npm package with prompt with best guess
@@ -44,6 +57,10 @@ Functionality Cases
         1. Y will then run the corrected command
         2. N will display a list of valid commands and terminate
     3. test above for examples such as:  spofly-thsi   and   cncert-tjs 
+
+Results: 
+![test group 1 ](assets/images/liri-test-1.gif)
+    
 3. Logs
     1. check log.txt - all commands will be logged wih their respective output
     2. remove log.txt and test - new log.txt should be created

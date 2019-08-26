@@ -25,7 +25,8 @@ The command format is:
 https://github.com/mylescarey2019/liri-node-app
 
 ## Screen Captures
-Walk thru Gif
+Walk thru Gif  - coming soon - for now please see .gifs on the TestCase document:
+[Test Cases](TestCases.md)
 
 ![Walk-Thru-Gif](assets/images/wireframe1.png)
 
@@ -69,6 +70,7 @@ Static pics:
 
 For further development details see:  [UseCases and Psuedo Code](UseCases-PsuedoCode.md)
 and [Test Cases](TestCases.md)
+
 
 ## Authors
 
