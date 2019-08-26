@@ -19,7 +19,12 @@ The command format is:
 3.  concert-this <artist/band name here>
 4.  do-what-it-says
 
-### Details
+### Additional Features
+
+1. all submitted commands and output appended to log.txt
+2. correction suggestions for command typos - see test case section 3 - Batch Match 
+
+## Details:
 
 ## Github project :
 https://github.com/mylescarey2019/liri-node-app
@@ -28,11 +33,6 @@ https://github.com/mylescarey2019/liri-node-app
 Walk thru Gif  - coming soon - for now please see .gifs on the TestCase document:
 [Test Cases](TestCases.md)
 
-![Walk-Thru-Gif](assets/images/wireframe1.png)
-
-Static pics:
-
-![static-pic](assets/images/wireframe1b.png)
 
 
 ## Getting Started
