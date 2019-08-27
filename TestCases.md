@@ -27,7 +27,7 @@ Functionality Cases
 
 Results: 
 
-![liri-test-case-1](/Users/Myles/Bootcamp/WORK/liri-node-app/assets/images/liri-test-case-1.gif)
+![liri-test-case-1](./assets/images/liri-test-case-1.gif)
 
 
 
@@ -43,7 +43,7 @@ Results:
 
 Results: 
 
-![liri-test-case-2](/Users/Myles/Bootcamp/WORK/liri-node-app/assets/images/liri-test-case-2.gif)
+![liri-test-case-2](./assets/images/liri-test-case-2.gif)
 
 
 
@@ -55,7 +55,7 @@ Results:
 
 Results: 
 
-![liri-test-case-3](/Users/Myles/Bootcamp/WORK/liri-node-app/assets/images/liri-test-case-3.gif)
+![liri-test-case-3](./assets/images/liri-test-case-3.gif)
 
 3. Command Typo - Best Match logic
     1. mis-type the command and string-similarity npm package with prompt with best guess
@@ -66,7 +66,7 @@ Results:
 
 Results: 
 
-![liri-test-case-4](/Users/Myles/Bootcamp/WORK/liri-node-app/assets/images/liri-test-case-4.gif)
+![liri-test-case-4](./assets/images/liri-test-case-4.gif)
 
 
 
@@ -76,7 +76,7 @@ Results:
 
 Results: 
 
-​    ![liri-test-case-5](/Users/Myles/Bootcamp/WORK/liri-node-app/assets/images/liri-test-case-5.gif)
+​    ![liri-test-case-5](./assets/images/liri-test-case-5.gif)
 
 ​    
 
