@@ -5,7 +5,7 @@
 Node.js app for song, movie, concert search
 
 ## Description
- 
+
 This node.js app has command line interface for retrieving song, movie and concert 
 information.
 
@@ -16,24 +16,25 @@ The command format is:
 
 1.  spotify-this-song <song name here>
 2.  movie-this <movie name here>
-3.  concert-this <artist/band name here>
-4.  do-what-it-says
+3.  concert-this <artist-band name here>
+4.  do-what-it-says  (this will run whatever command is in random.txt file)
 
 ### Additional Features
 
 1. all submitted commands and output appended to log.txt
-2. correction suggestions for command typos - see test case section 3 - Batch Match 
+2. correction suggestions for command typos - see test case section 3 - Best Match 
 
-## Details:
+## Further Details:
 
-## Github project :
-https://github.com/mylescarey2019/liri-node-app
+- ##### Github project :  https://github.com/mylescarey2019/liri-node-app
 
-## Screen Captures
-Walk thru Gif  - coming soon - for now please see .gifs on the TestCase document:
-[Test Cases](TestCases.md)
+- ##### [UseCases and Psuedo Code](UseCases-PsuedoCode.md)
 
+- ##### [Test Cases](TestCases.md)   (with test run .gif)
 
+## Use Example:
+
+![liri-example](./assets/images/liri-example.gif)
 
 ## Getting Started
 
@@ -61,30 +62,23 @@ Walk thru Gif  - coming soon - for now please see .gifs on the TestCase document
   1. enter command terms 
         1. spotify-this-song <song name here>
         2.  movie-this <movie name here>
-        3.  concert-this <artist/band name here>
+        3.  concert-this <artist-band name here>
         4.  do-what-it-says
     2. view results
-    
-
-## Help
-
-For further development details see:  [UseCases and Psuedo Code](UseCases-PsuedoCode.md)
-and [Test Cases](TestCases.md)
+  
 
 
 ## Authors
 
-Myles Carey 
-mylescarey2019@gmail.com 
+Myles Carey     mylescarey2019@gmail.com 
 
 ## Version History
- 
-* 0.1
-    * Initial Release
 
-## License
+* 0.1  Initial Release
+
+## License:
 
 
-## Acknowledgments
+## Acknowledgments:
 
 Thanks to beta testers - my 15yo & 17yo daughters and wife 

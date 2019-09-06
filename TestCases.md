@@ -58,7 +58,7 @@ Results:
 ![liri-test-case-3](./assets/images/liri-test-case-3.gif)
 
 3. Command Typo - Best Match logic
-    1. mis-type the command and string-similarity npm package with prompt with best guess
+    1. mis-type the command and string-similarity npm package will prompt with best guess
     2. move-dis the martian - expect: Did you mean:  movie-this the martian (Y/n)
         1. Y will then run the corrected command
         2. N will display a list of valid commands and terminate
