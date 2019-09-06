@@ -27,9 +27,6 @@ class FileManage {
         return console.log(err);
       }
   
-      // Otherwise, it will print: "movies.txt was updated!"
-      // console.log("log.txt was updated!");
-  
     });
   }
 

@@ -22,18 +22,11 @@ class OMDB {
   getMovie(searchName) {
     // console.log('in OMDB class object.getMovie()');
     if (searchName === '') searchName = 'Mr. NoBody';
-    // console.log('apikey: ',this.apiKey);
-    // console.log('search name is: ',searchName);
-
-    // var urlMovieTitle = searchName.toLowerCase().replace(' ','+');
-    // var urlMovieTitle = searchName;
-    // console.log('title is: ', urlMovieTitle);
      
     var apiURL = "http://www.omdbapi.com/?t=" + searchName + "&y=&plot=short&apikey=" + this.apiKey.id;
     // Then run a request with axios to the OMDB API with the movie specified
     axios.get(apiURL).then(
       function(response) {
-        // console.log(response);
 
         //    * Title of the movie.
         var movieTitle = 'Title: ' + response.data.Title;

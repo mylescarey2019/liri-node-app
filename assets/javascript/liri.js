@@ -2,23 +2,23 @@
 // set environment
 require("dotenv").config();
 var keys = require("./keys.js");
-// console.log("keys are: ", keys);
-// console.log(("spotfy: ",keys.spotify));
-// console.log(("bandsintown: ",keys.bandsintown));
-// console.log(("omdb: ",keys.omdb));
 
 // requires:
 // file system - for reading/writing files
 var fs = require("fs");
+
 // allow resolving of relative path not originating in current directory
 const path = require("path");
 
 // fileCommand - logic to manage file read/write 
 var fileCommandClass = require("./fileCommand.js");
+
 // songs - logic to manage Spotify API
 var musicClass = require("./songs.js");
+
 // concerts - logic to manage Bands In Town API
 var bandsInTownClass = require("./concerts.js");
+
 // movies - logic to  manage OMDB API
 var OMDBClass = require("./movies.js");
 
@@ -34,11 +34,13 @@ var stringSimilarity = require('string-similarity');
 
 // instansiate new file command object
 var myFileCommand = new fileCommandClass.FileManage();
-// instansiate new OMDB object
 
+// instansiate new OMDB object
 var myOMDB = new OMDBClass.OMDB(keys.omdb);
+
 // instansiate new BandsInTown object
 var myBandsInTown = new bandsInTownClass.BandsInTown(keys.bandsintown);
+
 // instansiate new Spotify object
 var myMusic = new musicClass.Music();
 
@@ -55,27 +57,16 @@ var apiCommandList = ['spotify-this','movie-this','concert-this'];
 
 
  // function check if typing was close to valid command 
- // want to leverage this using inquirier if time permits
 function checkCommand(command) {
   // console.log('in global.checkCommand');
   var matchResult = stringSimilarity.findBestMatch(command,fuzzyCommandList);
-  // console.log('string check object is:  ',matchResult);
   return matchResult.bestMatch.target;
-  // console.log('did you mean: ', matchResult.bestMatch.target + ' ' + commandInputValue);
 };  
 
 
  // function check if typing was close to valid command 
- // want to leverage this using inquirier if time permits
  function apiSwitch() {
   //  console.log('in global.apiSwitch');
-  //  if (!readyForAPICall) {
-  //    console.log('ready for API - fuzzy answer - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-  //  }
-  //  else {
-  //    console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);
-  //  };
-
    // append command to log
    myFileCommand.appendToLog(liriCommand + ' ' + liriSearchArg);
 
@@ -106,22 +97,17 @@ commandFileCommands = myFileCommand.readCommandInFile().split(' ');
 
 var [fileCommand, ...fileArgs] = commandFileCommands;
 var fileSearchArg = fileArgs.join(' ');
-// console.log('file args: ' + fileCommand + ' ' + fileSearchArg);
 
 // capture command line entries
 var [bin,sourcePath,liriCommand, ...liriArgs] = process.argv;
 var liriSearchArg = liriArgs.join(' ');
-// console.log('liri args: ' + liriCommand + ' ' +  liriSearchArg);
-
 
 // Now check the commands entered - via command line and/or file
 if (validCommands.indexOf(liriCommand) === -1) {
   // invalid command
-  // console.log(liriCommand + ' is not valid command');
   readyForAPICall = false;
 } // liri command is valid see if its do-what-it-says
 else {
-      // console.log(liriCommand + ' is valid command');
       // if calling for file command input reset values
       if (liriCommand === 'do-what-it-says') { 
           // ignore file command of do-what-it-says !
@@ -159,8 +145,6 @@ if (!readyForAPICall) {
       // console.log(response);
       // If the inquirerResponse confirms then proceed with API call based on fuzzy pick
       if (response.confirm) {
-        // console.log('you meant to type: ', fuzzyPick + ' ' + liriSearchArg);
-        // console.log('ready for API - fuzzy version - command is: ' + fuzzyPick + ' search term is: ' + liriSearchArg);
         liriCommand = fuzzyPick;
         // main logic switch 
         apiSwitch();
@@ -171,9 +155,6 @@ if (!readyForAPICall) {
         console.log('or:  do-what-it-says to execute command in the random.txt file.');
       }
     });
-
-
-
 }
 else {  // ready for API Call
   // console.log('ready for API - original input - command is: ' + liriCommand + ' search term is: ' + liriSearchArg);

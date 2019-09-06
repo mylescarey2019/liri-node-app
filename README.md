@@ -14,9 +14,9 @@ search values entered by the user.
 
 The command format is:
 
-1.  spotify-this-song <song name here>
-2.  movie-this <movie name here>
-3.  concert-this <artist-band name here>
+1.  spotify-this-song song-name-here
+2.  movie-this movie-name-here
+3.  concert-this artist-band-name-here
 4.  do-what-it-says  (this will run whatever command is in random.txt file)
 
 ### Additional Features
@@ -60,9 +60,9 @@ The command format is:
 
 * open terminal session
   1. enter command terms 
-        1. spotify-this-song <song name here>
-        2.  movie-this <movie name here>
-        3.  concert-this <artist-band name here>
+        1. spotify-this-song song-name-here
+        2.  movie-this movie-name-here
+        3.  concert-this artist-band-name-here
         4.  do-what-it-says
     2. view results
   

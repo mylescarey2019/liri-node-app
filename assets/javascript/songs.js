@@ -28,16 +28,11 @@ class Music {
   getSong(searchName) {
     // console.log('in Music class object.getSong()');
     if (searchName === '') searchName = 'If You See Kay';
-    // console.log('spotify id: ',process.env.SPOTIFY_ID);
-    // console.log('spotify secret: ',process.env.SPOTIFY_SECRET);
-    // console.log('search name is: ',searchName);
 
     // spotify API search
     spotify.search({ type: 'track', query: searchName })
     // spotify.search({ type: 'track', query: 'I Just Can\'t Stop Loving You' })
       .then(function(response) {
-        // console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
-        // console.log(response.tracks.items);
         var songs = response.tracks.items;
         var recodingOccurance = 1;
         var songFooter = '===========================================';
